@@ -18,13 +18,14 @@ A Django-based web application for job posting fraud detection using machine lea
   - Returns: fraud/legit label and confidence score
   - Includes guidelines and sample postings
  
-**Screenshots**
+## 📸 Screenshots
 
-![Dashboard](screenshots/Dashboard.jpeg)
-![Dataset](screenshots/Dataset.jpeg)
-![Algorithms](screenshots/Algorithms.jpeg)
-![Comparison](screenshots/Comparison.jpeg)
-![Prediction](screenshots/Prediction.jpeg)
+![Dashboard](Screenshots/Dashboard.jpeg)
+![Dataset](Screenshots/Dataset.jpeg)
+![Algorithms](Screenshots/Algorithms.jpeg)
+![Comparison](Screenshots/Comparison.jpeg)
+![Prediction](Screenshots/Prediction.jpeg)
+
 
 ## Project Structure
 
@@ -269,6 +270,7 @@ This project is for educational purposes. Adjust licensing as needed.
 ## Support
 
 For issues or questions, refer to [Django documentation](https://docs.djangoproject.com/) and [scikit-learn guides](https://scikit-learn.org/stable/user_guide.html).
+
 
 
 
