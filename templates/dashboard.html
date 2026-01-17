@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row g-3 mb-4">
+    <div class="col-md-4">
+        <div class="card text-center shadow-sm border-primary">
+            <div class="card-body">
+                <div class="text-muted small">Total Jobs</div>
+                <div class="display-5 fw-bold text-primary">{{ summary_stats.total_jobs }}</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-center shadow-sm border-success">
+            <div class="card-body">
+                <div class="text-muted small">Best Model</div>
+                <div class="h5 fw-bold text-success mt-2">{{ summary_stats.best_model }}</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-center shadow-sm border-danger">
+            <div class="card-body">
+                <div class="text-muted small">Fraud Rate</div>
+                <div class="display-5 fw-bold text-danger">{{ summary_stats.fraud_rate }}</div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row g-3">
+    {% for card in cards %}
+    <div class="col-12 col-md-6 col-xl-3">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title">{{ card.title }}</h5>
+                <p class="card-text text-muted">{{ card.description }}</p>
+                <a href="/{{ card.href }}/" class="btn btn-primary">{{ card.cta }}</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2 class="mb-3">Algorithm Comparison Dashboard</h2>
+<p class="text-muted">Performance metrics across all four models.</p>
+
+<!-- Winner Badge -->
+<div class="alert alert-success shadow-sm mb-4" role="alert">
+    <h5 class="alert-heading">🏆 Best Model: LSTM (Highest AUC)</h5>
+    <p class="mb-0">LSTM achieves the highest AUC of 0.965 with excellent accuracy and F1 score, making it the top performer for job fraud detection.</p>
+</div>
+
+<div class="row g-3 mb-4">
+    <div class="col-12">
+        <div class="card shadow-sm">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">AUC, F1, and Accuracy Comparison</h5>
+            </div>
+            <div class="card-body table-responsive">
+                <table class="table table-hover mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Algorithm</th>
+                            <th>AUC</th>
+                            <th>F1 Score</th>
+                            <th>Accuracy</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for row in rows %}
+                        <tr>
+                            <td><strong>{{ row.algorithm }}</strong></td>
+                            <td><span class="badge bg-info">{{ row.auc }}</span></td>
+                            <td><span class="badge bg-success">{{ row.f1 }}</span></td>
+                            <td><span class="badge bg-warning text-dark">{{ row.accuracy }}</span></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row g-3">
+    <div class="col-md-6">
+        <div class="card shadow-sm h-100">
+            <div class="card-header bg-secondary text-white">
+                <h6 class="mb-0">Performance Visualization</h6>
+            </div>
+            <div class="card-body text-center">
+                <p class="text-muted">Visual comparison chart placeholder</p>
+                <p class="small">You can integrate Chart.js or Plotly here to display:</p>
+                <ul class="text-start small">
+                    <li>Bar chart comparing AUC scores</li>
+                    <li>F1 score comparison</li>
+                    <li>Accuracy metrics</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card shadow-sm h-100">
+            <div class="card-header bg-secondary text-white">
+                <h6 class="mb-0">Key Insights</h6>
+            </div>
+            <div class="card-body">
+                <ul class="mb-0">
+                    {% for note in notes %}
+                        <li>{{ note }}</li>
+                    {% endfor %}
+                </ul>
+                <p class="small text-muted mt-3 mb-0">
+                    <strong>Note:</strong> These insights are based on model evaluation metrics. 
+                    Update with your own findings from training runs.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

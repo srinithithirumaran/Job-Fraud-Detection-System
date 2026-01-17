@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row g-3">
+    <div class="col-lg-7">
+        <div class="card shadow-sm h-100">
+            <div class="card-header">Job Fraud Detection Form</div>
+            <div class="card-body">
+                <form method="post" class="mb-3">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Job Title</label>
+                        <input type="text" class="form-control" id="title" name="title" placeholder="e.g., Data Scientist" value="{{ form_values.title }}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Job Description</label>
+                        <textarea class="form-control" id="description" name="description" rows="6" placeholder="Paste job description here..." required>{{ form_values.description }}</textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="location" class="form-label">Location</label>
+                        <input type="text" class="form-control" id="location" name="location" placeholder="e.g., Remote or City, Country" value="{{ form_values.location }}" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Check</button>
+                </form>
+                {% if result %}
+                <div class="alert {% if result.label == 'Fraud' %}alert-danger{% else %}alert-success{% endif %} shadow-sm">
+                    <h5>Analysis Result</h5>
+                    <div class="mt-2">
+                        <strong>Prediction:</strong> <span class="badge {% if result.label == 'Fraud' %}bg-danger{% else %}bg-success{% endif %} fs-6">{{ result.label }}</span>
+                    </div>
+                    <div class="mt-3">
+                        <strong>Confidence Level:</strong>
+                        <div class="progress" style="height: 30px; margin-top: 10px;">
+                            <div class="progress-bar {% if result.label == 'Fraud' %}bg-danger{% else %}bg-success{% endif %} progress-bar-striped progress-bar-animated" 
+                                 role="progressbar" 
+                                 style="width: {{ result.confidence_percent }}%" 
+                                 aria-valuenow="{{ result.confidence_percent }}" 
+                                 aria-valuemin="0" 
+                                 aria-valuemax="100">
+                                <strong>{{ result.confidence_percent }}% {{ result.label }}</strong>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-3">
+                        <strong>Fraud Probability:</strong> {{ result.probability }}
+                    </div>
+                    <div class="mt-3">
+                        <strong>{% if result.label == 'Fraud' %}Why this job looks suspicious:{% else %}Why this job looks legitimate:{% endif %}</strong>
+                        <ul class="mt-2 mb-0">
+                            {% for explanation in result.explanations %}
+                                <li>{{ explanation }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="mt-3">
+                        <small class="text-muted"><em>Prediction based on trained ML model.</em></small>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-5">
+        <div class="card shadow-sm mb-3">
+            <div class="card-header">How to use</div>
+            <div class="card-body">
+                <h6>Guidelines:</h6>
+                <ul class="mb-0">
+                    {% for guideline in guidelines %}
+                        <li><small>{{ guideline }}</small></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <div class="card shadow-sm">
+            <div class="card-header">Sample job postings</div>
+            <div class="card-body">
+                {% for sample in samples %}
+                <div class="mb-3 pb-3 border-bottom">
+                    <div><strong>{{ sample.title }}</strong></div>
+                    <small class="text-muted d-block">{{ sample.description }}</small>
+                    <small class="badge bg-light text-dark">{{ sample.location }}</small>
+                </div>
+                {% endfor %}
+                <p class="small text-muted mb-0">Use these as templates to test the predictor.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
