@@ -54,6 +54,14 @@ jobfraud/
     └── copilot-instructions.md  # Copilot setup instructions
 ```
 
+**Screenshots**
+![Prediction](https://github.com/user-attachments/assets/92441a74-2e79-49f5-9ae8-cab521432cf8)
+![Dataset](https://github.com/user-attachments/assets/62c35d04-9d31-4b20-9cfd-e6a1fb3871ab)
+![Algorithms](https://github.com/user-attachments/assets/b5604971-44a2-4750-bf57-ae9188b40da8)
+![Comparision](https://github.com/user-attachments/assets/4c10ee06-a60a-41dd-9ab3-5e2870cd8175)
+![Dashboard](https://github.com/user-attachments/assets/275119ad-80dc-4355-9afd-df0d1a2a6431)
+
+
 ## Installation & Setup
 
 ### 1. Clone or navigate to the project
